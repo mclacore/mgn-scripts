@@ -1,3 +1,12 @@
+##############################################################
+# Copyright 2024 Massdriver, Inc
+#
+# This script downloads and installs the MGN replication agent
+# from the specified region, then installs the agent using 
+# short lived credentials.
+#
+##############################################################
+
 param (
     [string]$AWSAccountID,
     [string]$AWSRegion,

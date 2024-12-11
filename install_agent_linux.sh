@@ -1,5 +1,14 @@
 #!/bin/bash
 
+##############################################################
+# Copyright 2024 Massdriver, Inc
+#
+# This script downloads and installs the MGN replication agent
+# from the specified region, then installs the agent using 
+# short lived credentials.
+#
+##############################################################
+
 if [[ $# -ne 6 ]]; then
   echo "Usage: $0 <AWS_ACCOUNT_ID> <AWS_REGION> <SERVER_NAME> <AWS_ACCESS_KEY_ID> <AWS_SECRET_ACCESS_KEY> <AWS_SESSION_TOKEN>"
   echo "Example: $0 123456789012 us-east-1 my-server AKIAEXAMPLE SECRETEXAMPLE TOKENEXAMPLE"
@@ -12,6 +21,11 @@ SERVER_NAME=$3
 AWS_ACCESS_KEY_ID=$4
 AWS_SECRET_ACCESS_KEY=$5
 AWS_SESSION_TOKEN=$6
+
+if [[ ! $AWS_REGION =~ ^[a-z]{2}-[a-z]+-[0-9]+$ ]]; then
+  echo "Error: Invalid AWS region format. Expected format is something like 'us-east-1'."
+  exit 1
+fi
 
 AGENT_URL="https://aws-application-migration-service-$AWS_REGION.s3.$AWS_REGION.amazonaws.com/latest/linux/aws-replication-installer-init"
 

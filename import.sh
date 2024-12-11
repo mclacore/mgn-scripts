@@ -1,5 +1,16 @@
 #!/bin/bash
 
+################################################################
+# Copyright 2024 Massdriver, Inc
+#
+# This script checks for (or creates) an S3 bucket to upload
+# an MGN inventory spreadsheet. It then takes an existing CSV
+# named aws-application-migration-service-import.csv and uploads
+# the file to the AWS S3 bucket. It then starts an MGN import
+# task to import the inventory into AWS MGN.
+#
+################################################################
+
 read -p "Enter the AWS region (e.g., us-west-2): " AWS_REGION
 
 CSV_FILE="./aws-application-migration-service-import.csv"
